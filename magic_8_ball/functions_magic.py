@@ -1,5 +1,9 @@
 import requests
 
+# the reason this version is better is because it is  easier to read and also it can also be updated very easily. 
+# for example if the url changes, you only have to change it in one place.
+# also if the response changes, you only have to change the extract_answer_from_response function.
+
 def main():
     question = input('Enter your question for the magic 8 ball: ')
     magic_8_ball_url = generate_url_for_question(question)
@@ -10,6 +14,7 @@ def main():
 
 
 def generate_url_for_question(question):
+    
     url = f'https://magic-8-ball-mctc.uc.r.appspot.com/magic/JSON/{question}'
     return url
 
@@ -38,8 +43,14 @@ def extract_answer_from_response(response):
     # TODO what would happen if the response dictionary was not in the expected form?
     # TODO can you modify this function to print an error message, and return None
     #   if the response dictionary is not in this structure? 
-    answer = response['answer']
-    return answer
+    
+    try:
+        answer = response['answer']
+        return answer
+    except KeyError:
+        print("Unexpected response structure")
+        return None
+
 
 
 if __name__ == '__main__':

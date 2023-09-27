@@ -17,9 +17,11 @@ class ClassList:
         self.class_list = []
         self.max_students = max_students
 
-        # TODO raise an exception - StudentError - if max_students is zero or negative. 
+        #* TODO raise an exception - StudentError - if max_students is zero or negative. 
         # Write test to confirm.
-
+        if max_students <= 0:
+            raise StudentError('Max students must be greater than 0')
+        
 
     def add_student(self, student):
         """ Add student if there is space in the class,
@@ -52,8 +54,12 @@ class ClassList:
         return None
 
 
-    ## TODO add a method called is_class_full.
+    ##* TODO add a method called is_class_full.
     # This should return True or False to indicate if the class is full.
+    
+    def is_class_full(self):
+        """ Returns True if class is full, False if not """
+        return len(self.class_list) >= self.max_students
 
 
     def __str__(self):
